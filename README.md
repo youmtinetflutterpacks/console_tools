@@ -1,39 +1,31 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
 
 ```dart
-const like = 'sample';
+import 'package:console_tools/console_tools.dart';
+
+void main() {
+  for (var element in ConsoleColors.values) {
+    Console.log(
+      element.name,
+      color: element,
+      consoleStyle: ConsoleStyles.normal,
+    );
+  }
+  Console.log('awesome: Console log normal 002', consoleStyle: ConsoleStyles.clineote);
+  Console.log('awesome: Console log normal 003', consoleStyle: ConsoleStyles.clineote);
+  Console.log('awesome: Console log normal 004', consoleStyle: ConsoleStyles.clineote);
+  Console.log('awesome: Console log normal', consoleStyle: ConsoleStyles.bold);
+  Console.log('awesome: Console log', consoleStyle: ConsoleStyles.bold);
+  Console.log('awesome: Console log clineote', consoleStyle: ConsoleStyles.clineote);
+  Console.log('awesome: Console log clineoteFast', consoleStyle: ConsoleStyles.clineoteFast);
+  Console.log('awesome: Console log italic', consoleStyle: ConsoleStyles.italic);
+  Console.log('awesome: Console log lineThrought', consoleStyle: ConsoleStyles.lineThrought);
+  Console.log('awesome: Console log normal2', consoleStyle: ConsoleStyles.normal2);
+  Console.log('awesome: Console log opacity', consoleStyle: ConsoleStyles.opacity);
+  Console.log('awesome: Console log underline', consoleStyle: ConsoleStyles.underline);
+}
+
 ```
 
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
