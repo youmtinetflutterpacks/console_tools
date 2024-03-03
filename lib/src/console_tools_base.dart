@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:developer' as dev;
+
 enum ConsoleStyles {
   normal,
   bold,
@@ -39,14 +42,28 @@ enum ConsoleColors {
 
 class Console {
   static log(
-    dynamic text, {
+    Object? text, {
     ConsoleColors color = ConsoleColors.white,
     ConsoleStyles consoleStyle = ConsoleStyles.normal,
+    String name = 'logger',
+    DateTime? time,
+    int? sequenceNumber,
+    int level = 0,
+    Zone? zone,
+    Object? error,
+    StackTrace? stackTrace,
   }) {
-    var printtext = '\x1B[${color.index + 30}m $text\x1B[${consoleStyle.index + 0}m\x1B[m';
-    var xcolor = '\x1B[${color.index + 30}m\x1B[${consoleStyle.index + 0}m\x1B[m';
-    print(xcolor);
-    print(printtext);
-    print(xcolor);
+    var printtext =
+        '\x1B[${color.index + 30}m$text\x1B[${consoleStyle.index}m\x1B[m';
+    dev.log(
+      printtext,
+      name: name,
+      error: error,
+      level: level,
+      sequenceNumber: sequenceNumber,
+      stackTrace: stackTrace,
+      time: time,
+      zone: zone,
+    );
   }
 }
