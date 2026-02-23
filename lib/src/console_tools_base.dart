@@ -1,50 +1,17 @@
 import 'dart:async';
-import 'dart:developer' as dev;
+import 'dart:convert';
 
-enum ConsoleStyles {
-  normal,
-  bold,
-  opacity,
-  italic,
-  underline,
-  clineote,
-  clineoteFast,
-  none,
-  normal2,
-  lineThrought,
-}
-
-enum ConsoleColors {
-  /// #000000 black
-  black,
-
-  /// #c42654 Rose Red
-  roseRed,
-
-  /// #4c892d Sap Green
-  greenSap,
-
-  /// #94b428 Citron
-  citron,
-
-  /// #6a7ec8 Violet-Blue
-  crayola,
-
-  /// #8c6bc8 Middle Blue Purple
-  middleBluePurple,
-
-  /// #
-  teal,
-
-  /// #
-  white,
+enum LogLevel {
+  debug,
+  info,
+  success,
+  warning,
+  error,
 }
 
 class Console {
   static log(
     Object? text, {
-    ConsoleColors color = ConsoleColors.white,
-    ConsoleStyles consoleStyle = ConsoleStyles.normal,
     String name = 'logger',
     DateTime? time,
     int? sequenceNumber,
@@ -53,17 +20,69 @@ class Console {
     Object? error,
     StackTrace? stackTrace,
   }) {
-    var printtext =
-        '\x1B[${color.index + 30}m$text\x1B[${consoleStyle.index}m\x1B[m';
-    dev.log(
-      printtext,
-      name: name,
-      error: error,
-      level: level,
-      sequenceNumber: sequenceNumber,
-      stackTrace: stackTrace,
-      time: time,
-      zone: zone,
-    );
+    i(text, tag: name);
+  }
+
+  Console._();
+
+  static bool enableColors = true;
+  static bool showTimestamp = true;
+
+  // ANSI colors
+  static const _reset = '\x1B[0m';
+
+  static const _colors = {
+    LogLevel.debug: '\x1B[90m', // grey
+    LogLevel.info: '\x1B[36m', // cyan
+    LogLevel.success: '\x1B[32m', // green
+    LogLevel.warning: '\x1B[33m', // yellow
+    LogLevel.error: '\x1B[31m', // red
+  };
+
+  static const _icons = {
+    LogLevel.debug: '🐛',
+    LogLevel.info: 'ℹ️',
+    LogLevel.success: '✅',
+    LogLevel.warning: '⚠️',
+    LogLevel.error: '❌',
+  };
+
+  static void d(Object? message, {String? tag}) => _log(LogLevel.debug, message, tag);
+
+  static void i(Object? message, {String? tag}) => _log(LogLevel.info, message, tag);
+
+  static void s(Object? message, {String? tag}) => _log(LogLevel.success, message, tag);
+
+  static void w(Object? message, {String? tag}) => _log(LogLevel.warning, message, tag);
+
+  static void e(Object? message, {String? tag}) => _log(LogLevel.error, message, tag);
+
+  static void json(Object jsonObj, {String? tag}) {
+    final encoder = const JsonEncoder.withIndent('  ');
+    final pretty = encoder.convert(jsonObj);
+    _log(LogLevel.debug, pretty, tag);
+  }
+
+  static void _log(LogLevel level, Object? message, String? tag) {
+    final time = showTimestamp ? _timeNow() : '';
+    final icon = _icons[level];
+    final tagPart = tag != null ? '[$tag]' : '';
+
+    final base = '$time $icon $tagPart $message';
+
+    if (!enableColors) {
+      print(base);
+      return;
+    }
+
+    final color = _colors[level];
+    print('$color$base$_reset');
+  }
+
+  static String _timeNow() {
+    final now = DateTime.now();
+    return '[${now.hour.toString().padLeft(2, '0')}:'
+        '${now.minute.toString().padLeft(2, '0')}:'
+        '${now.second.toString().padLeft(2, '0')}]';
   }
 }
