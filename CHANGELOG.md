@@ -1,3 +1,7 @@
+## 2.0.2
+- Fix: The `Console` class was not properly exporting the `enableColors` and `showTimestamp` properties. Now, these properties are correctly defined as static variables, allowing users to control the output formatting as intended.
+
+
 ## 2.0.1
 - Fix: Global toggles were not working as expected. Now, `Console.enableColors` and `Console.showTimestamp` properly control the output formatting.
 
