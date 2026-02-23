@@ -1,6 +1,6 @@
 name: console_tools
 description: A console logger class, with custom colors and text styles already defined.
-version: 2.0.2
+version: 2.0.3
 homepage: https://github.com/ymrabti/console_tools.git
 
 environment:

@@ -69,7 +69,7 @@ class Console {
   /// - [name] — tag label shown in brackets (defaults to `'logger'`).
   /// - [time], [sequenceNumber], [level], [zone], [error], [stackTrace] —
   ///   unused; kept for `dart:developer` compatibility.
-  static log(
+  static void log(
     Object? text, {
     String name = 'logger',
     DateTime? time,

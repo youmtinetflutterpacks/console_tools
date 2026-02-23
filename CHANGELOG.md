@@ -1,3 +1,6 @@
+## 2.0.3
+- Fix: static log pass analitics return type <void> instead of <dynamic>.
+
 ## 2.0.2
 - Fix: The `Console` class was not properly exporting the `enableColors` and `showTimestamp` properties. Now, these properties are correctly defined as static variables, allowing users to control the output formatting as intended.
 
