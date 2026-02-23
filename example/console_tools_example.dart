@@ -7,8 +7,5 @@ void main() {
   Console.w("API slow response");
   Console.e("Crash detected");
 
-  Console.json({
-    "user": "Younes",
-    "role": "developer",
-  });
+  Console.json({"user": "Younes", "role": "developer"});
 }

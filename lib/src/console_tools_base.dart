@@ -1,13 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
-enum LogLevel {
-  debug,
-  info,
-  success,
-  warning,
-  error,
-}
+enum LogLevel { debug, info, success, warning, error }
 
 class Console {
   static log(
@@ -47,15 +41,20 @@ class Console {
     LogLevel.error: '❌',
   };
 
-  static void d(Object? message, {String? tag}) => _log(LogLevel.debug, message, tag);
+  static void d(Object? message, {String? tag}) =>
+      _log(LogLevel.debug, message, tag);
 
-  static void i(Object? message, {String? tag}) => _log(LogLevel.info, message, tag);
+  static void i(Object? message, {String? tag}) =>
+      _log(LogLevel.info, message, tag);
 
-  static void s(Object? message, {String? tag}) => _log(LogLevel.success, message, tag);
+  static void s(Object? message, {String? tag}) =>
+      _log(LogLevel.success, message, tag);
 
-  static void w(Object? message, {String? tag}) => _log(LogLevel.warning, message, tag);
+  static void w(Object? message, {String? tag}) =>
+      _log(LogLevel.warning, message, tag);
 
-  static void e(Object? message, {String? tag}) => _log(LogLevel.error, message, tag);
+  static void e(Object? message, {String? tag}) =>
+      _log(LogLevel.error, message, tag);
 
   static void json(Object jsonObj, {String? tag}) {
     final encoder = const JsonEncoder.withIndent('  ');
