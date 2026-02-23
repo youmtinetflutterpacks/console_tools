@@ -1,3 +1,6 @@
+## 2.0.1
+- Fix: Global toggles were not working as expected. Now, `Console.enableColors` and `Console.showTimestamp` properly control the output formatting.
+
 ## 2.0.0
 - Major update.
 - Use Dart developper logger.
