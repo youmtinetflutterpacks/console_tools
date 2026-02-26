@@ -1,3 +1,7 @@
+## 2.0.4
+- Add topics to pubspec.yaml for better discoverability on pub.dev.
+
+
 ## 2.0.3
 - Fix: static log pass analitics return type <void> instead of <dynamic>.
 
